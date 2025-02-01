@@ -7,7 +7,7 @@ public class FileReading {
     public static void main(String[] args) {
         Scanner userinput = new Scanner(System.in);
 
-        // Accept the name of the file from the user
+        // user input for directory and name of the file
         System.out.print("Enter the name of the file: ");
         String filename = userinput.nextLine();
         
