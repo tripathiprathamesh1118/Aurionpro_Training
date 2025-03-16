@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class Facade {
     private Board board;
-    private ResultAnalzer resultAnalyzer;
+    private ResultAnalyzer resultAnalyzer;
     private MarkType currentPlayer;
     private Scanner scanner;
 
     public Facade() {
         scanner = new Scanner(System.in);
         board = new Board();
-        resultAnalyzer = new ResultAnalzer(board);
+        resultAnalyzer = new ResultAnalyzer(board);
         currentPlayer = MarkType.X;
     }
 
@@ -36,11 +36,10 @@ public class Facade {
             int move = getValidMove();
 
             try {
-
                 boolean gameWon = board.makeMove(move, currentPlayer);
                 String result = resultAnalyzer.analyzeResult();
                 
-                if (!result.equals("Game is running")) {
+                if (!result.equals("Game in Progress...")) {
                     board.displayBoard();
                     System.out.println(result);
                     break;
@@ -54,7 +53,7 @@ public class Facade {
 
     private void resetGame() {
         board.resetBoard();
-        resultAnalyzer = new ResultAnalzer(board); 
+        resultAnalyzer = new ResultAnalyzer(board); 
         currentPlayer = MarkType.X; 
     }
 
@@ -63,13 +62,13 @@ public class Facade {
         while (move < 0 || move > 8) {
             System.out.print("Enter your move (0-8): ");
             if (!scanner.hasNextInt()) {
-                System.out.println("Invalid input.");
+                System.out.println("Invalid input. Please enter a number between 0 and 8.");
                 scanner.next(); 
                 continue;
             }
             move = scanner.nextInt();
             if (move < 0 || move > 8) {
-                System.out.println("Invalid input.");
+                System.out.println("Invalid input. Please enter a number between 0 and 8.");
             }
         }
         return move;
